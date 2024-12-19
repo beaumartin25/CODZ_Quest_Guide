@@ -18,6 +18,8 @@ namespace api.Data
         }
 
         public DbSet<Game> Games { get; set; }
-        public DbSet<Game> Maps { get; set; }
+        public DbSet<Map> Maps { get; set; }
+        public DbSet<Step> Steps { get; set; }
+        public DbSet<Quest> Quests { get; set; }
     }
 }

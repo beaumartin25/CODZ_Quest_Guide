@@ -11,7 +11,7 @@ namespace api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Game",
+                name: "Games",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -21,31 +21,31 @@ namespace api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Game", x => x.Id);
+                    table.PrimaryKey("PK_Games", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Map",
+                name: "Maps",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     GameId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Map", x => x.Id);
+                    table.PrimaryKey("PK_Maps", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Map_Game_GameId",
+                        name: "FK_Maps_Games_GameId",
                         column: x => x.GameId,
-                        principalTable: "Game",
+                        principalTable: "Games",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Quest",
+                name: "Quests",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -56,16 +56,16 @@ namespace api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Quest", x => x.Id);
+                    table.PrimaryKey("PK_Quests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Quest_Map_MapId",
+                        name: "FK_Quests_Maps_MapId",
                         column: x => x.MapId,
-                        principalTable: "Map",
+                        principalTable: "Maps",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Step",
+                name: "Steps",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -76,27 +76,27 @@ namespace api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Step", x => x.Id);
+                    table.PrimaryKey("PK_Steps", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Step_Quest_QuestId",
+                        name: "FK_Steps_Quests_QuestId",
                         column: x => x.QuestId,
-                        principalTable: "Quest",
+                        principalTable: "Quests",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Map_GameId",
-                table: "Map",
+                name: "IX_Maps_GameId",
+                table: "Maps",
                 column: "GameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Quest_MapId",
-                table: "Quest",
+                name: "IX_Quests_MapId",
+                table: "Quests",
                 column: "MapId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Step_QuestId",
-                table: "Step",
+                name: "IX_Steps_QuestId",
+                table: "Steps",
                 column: "QuestId");
         }
 
@@ -104,16 +104,16 @@ namespace api.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Step");
+                name: "Steps");
 
             migrationBuilder.DropTable(
-                name: "Quest");
+                name: "Quests");
 
             migrationBuilder.DropTable(
-                name: "Map");
+                name: "Maps");
 
             migrationBuilder.DropTable(
-                name: "Game");
+                name: "Games");
         }
     }
 }

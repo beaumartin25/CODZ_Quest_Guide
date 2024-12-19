@@ -11,7 +11,7 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20241218232354_init")]
+    [Migration("20241219035500_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -42,7 +42,7 @@ namespace api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Game");
+                    b.ToTable("Games");
                 });
 
             modelBuilder.Entity("api.Models.Map", b =>
@@ -53,12 +53,12 @@ namespace api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("GameId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -68,7 +68,7 @@ namespace api.Migrations
 
                     b.HasIndex("GameId");
 
-                    b.ToTable("Map");
+                    b.ToTable("Maps");
                 });
 
             modelBuilder.Entity("api.Models.Quest", b =>
@@ -93,7 +93,7 @@ namespace api.Migrations
 
                     b.HasIndex("MapId");
 
-                    b.ToTable("Quest");
+                    b.ToTable("Quests");
                 });
 
             modelBuilder.Entity("api.Models.Step", b =>
@@ -119,7 +119,7 @@ namespace api.Migrations
 
                     b.HasIndex("QuestId");
 
-                    b.ToTable("Step");
+                    b.ToTable("Steps");
                 });
 
             modelBuilder.Entity("api.Models.Map", b =>
