@@ -9,7 +9,6 @@ namespace api.Mappers
 {
     public static class MapMappers
     {
-
         public static MapDto ToMapDto(this Map mapModel)
         {
             return new MapDto
