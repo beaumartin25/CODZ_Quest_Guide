@@ -12,7 +12,7 @@ namespace api.Controllers
 {
     [Route("api/step")]
     [ApiController]
-    public class StepController
+    public class StepController : ControllerBase
     {
         private readonly IStepRepository _stepRepo;
         public StepController(IStepRepository stepRepo)

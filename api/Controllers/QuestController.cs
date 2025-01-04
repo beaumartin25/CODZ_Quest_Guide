@@ -37,7 +37,7 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            return Ok(quest.ToquestDto());
+            return Ok(quest.ToQuestDto());
         }
     }
 }
