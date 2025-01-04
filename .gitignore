@@ -18,8 +18,10 @@
 .env.test.local
 .env.production.local
 .vscode/
-/api/obj/Debug/
+/api/obj/
 /api/bin/
+/api/packages/
+/api/.vs/
 
 npm-debug.log*
 yarn-debug.log*
