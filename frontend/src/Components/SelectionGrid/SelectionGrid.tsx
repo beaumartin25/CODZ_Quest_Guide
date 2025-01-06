@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, CardMedia, Grid2 } from "@mui/material";
+import { Card, CardContent, Grid2, Typography } from "@mui/material";
 
 interface GameItem {
   id: number;
@@ -39,13 +39,11 @@ const SelectionGrid: React.FC<SelectionGridProps> = ({
               ":hover": { bgcolor: "gray" },
             }}
           >
-            <CardMedia
-              component="img"
-              image={`images/${item.imageUrl}`}
-              alt={item.name}
-              sx={{ objectFit: "cover" }}
-            />
-            <CardContent sx={{ flexGrow: 1 }}></CardContent>
+            <CardContent sx={{ flexGrow: 1 }}>
+              <Typography variant="h5" color="white" component="div">
+                {item.name}
+              </Typography>
+            </CardContent>
           </Card>
         </Grid2>
       ))}
