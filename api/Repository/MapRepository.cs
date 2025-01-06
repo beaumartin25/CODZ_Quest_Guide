@@ -26,5 +26,9 @@ namespace api.Repository
         {
             return await _context.Maps.FindAsync(id);
         }
+        public async Task<List<Map>> GetByGameIdAsync(int gameId)
+        {
+            return await _context.Maps.Where(m => m.GameId == gameId).ToListAsync();
+        }
     }
 }

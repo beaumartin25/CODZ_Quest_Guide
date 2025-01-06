@@ -10,5 +10,6 @@ namespace api.Interfaces
     {
         Task<List<Map>> GetAllAsync();
         Task<Map?> GetByIdAsync(int id);
+        Task<List<Map>> GetByGameIdAsync(int gameId);
     }
 }

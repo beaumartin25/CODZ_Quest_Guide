@@ -40,5 +40,18 @@ namespace api.Controllers
 
             return Ok(map.ToMapDto());
         }
+        [HttpGet("game/{gameId}")]
+        public async Task<IActionResult> GetByGameId([FromRoute] int gameId)
+        {
+            var maps = await _mapRepo.GetByGameIdAsync(gameId);
+
+            if (!maps.Any())
+            {
+                return NotFound($"No maps found for game ID {gameId}.");
+            }
+
+            var mapDtos = maps.Select(m => m.ToMapDto());
+            return Ok(mapDtos);
+        }
     }
 }
