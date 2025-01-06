@@ -4,6 +4,7 @@ import { handleError } from "../Helpers/ErrorHandler";
 
 const api = "http://localhost:5170/api/game/";
 
+
 export const gameGetAPI = async () => {
   try {
     const response = await axios.get<GameGet[]>(api);

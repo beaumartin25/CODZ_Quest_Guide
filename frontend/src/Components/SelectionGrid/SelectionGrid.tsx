@@ -1,6 +1,5 @@
 import React from "react";
-import { Card, CardContent, CardMedia, Typography, Grid2 } from "@mui/material";
-import boImage from "../../images/bo.png";
+import { Card, CardContent, CardMedia, Grid2 } from "@mui/material";
 
 interface GameItem {
   id: number;
