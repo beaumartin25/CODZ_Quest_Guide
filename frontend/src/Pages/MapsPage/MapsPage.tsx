@@ -1,6 +1,7 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import SelectionGrid from "../../Components/SelectionGrid/SelectionGrid";
+import { QuestGetByGameIdAPI } from "../../Services/QuestSerice";
 interface MapItem {
   id: number;
   name: string;
@@ -8,13 +9,22 @@ interface MapItem {
 }
 
 const MapsPage: React.FC = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const { maps = [], gameName = "Unknown Game" } =
     (location.state as { maps: MapItem[]; gameName: string }) || {}; // Retrieve state from navigation
 
-  const handleMapClick = (map: MapItem) => {
-    console.log(`Navigating to map: ${map.name}`);
-    // Add navigation logic here if needed
+  const handleMapClick = async (map: MapItem) => {
+    try {
+      console.log(`Navigating to map: ${map.name}`);
+      const quests = await QuestGetByGameIdAPI(map.id);
+      console.log(quests);
+      navigate(`/quests/${map.id}`, {
+        state: { quests, mapName: map.name },
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

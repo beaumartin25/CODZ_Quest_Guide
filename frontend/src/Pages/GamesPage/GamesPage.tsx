@@ -39,8 +39,7 @@ const GamesPage: React.FC = () => {
     }
   };
 
-  return (
-  <SelectionGrid items={games} onItemClick={handleGameClick} />);
+  return <SelectionGrid items={games} onItemClick={handleGameClick} />;
 };
 
 export default GamesPage;

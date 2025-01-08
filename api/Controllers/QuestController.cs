@@ -39,5 +39,18 @@ namespace api.Controllers
 
             return Ok(quest.ToQuestDto());
         }
+        [HttpGet("map/{mapId}")]
+        public async Task<IActionResult> GetByMapId([FromRoute] int mapId)
+        {
+            var quests = await _questRepo.GetBymapIdAsync(mapId);
+
+            if (!quests.Any())
+            {
+                return NotFound($"No quests found for map ID {mapId}.");
+            }
+
+            var questDtos = quests.Select(m => m.ToQuestDto());
+            return Ok(questDtos);
+        }
     }
 }
