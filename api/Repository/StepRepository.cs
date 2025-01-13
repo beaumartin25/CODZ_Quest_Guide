@@ -25,5 +25,9 @@ namespace api.Repository
         {
             return await _context.Steps.FindAsync(id);
         }
+        public async Task<List<Step>> GetByQuestIdAsync(int questId)
+        {
+            return await _context.Steps.Where(s => s.QuestId == questId).ToListAsync();
+        }
     }
 }

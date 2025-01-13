@@ -20,7 +20,7 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => {
 builder.Services.AddScoped<IGameRepository, GameRepository>();
 builder.Services.AddScoped<IMapRepository, MapRepository>();
 builder.Services.AddScoped<IQuestRepository, QuestRepository>();
-builder.Services.AddScoped<IMapRepository, MapRepository>();
+builder.Services.AddScoped<IStepRepository, StepRepository>();
 
 
 var app = builder.Build();

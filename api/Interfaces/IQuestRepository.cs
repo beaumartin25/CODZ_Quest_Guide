@@ -10,6 +10,6 @@ namespace api.Interfaces
     {
         Task<List<Quest>> GetAllAsync();
         Task<Quest?> GetByIdAsync(int id);
-        Task<List<Quest>> GetBymapIdAsync(int mapId);
+        Task<List<Quest>> GetByMapIdAsync(int mapId);
     }
 }

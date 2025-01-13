@@ -27,7 +27,7 @@ namespace api.Repository
             return await _context.Quests.FindAsync(id);
         }
 
-        public async Task<List<Quest>> GetBymapIdAsync(int mapId)
+        public async Task<List<Quest>> GetByMapIdAsync(int mapId)
         {
             return await _context.Quests.Where(q => q.MapId == mapId).ToListAsync();
         }

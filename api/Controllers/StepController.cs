@@ -41,5 +41,18 @@ namespace api.Controllers
 
             return Ok(step.ToStepDto());
         }
+        [HttpGet("quest/{questId}")]
+        public async Task<IActionResult> GetByQuestId([FromRoute] int questId)
+        {
+            var steps = await _stepRepo.GetByQuestIdAsync(questId);
+
+            if (!steps.Any())
+            {
+                return NotFound($"No steps found for quest ID {questId}.");
+            }
+
+            var stepDtos = steps.Select(m => m.ToStepDto());
+            return Ok(stepDtos);
+        }
     }
 }

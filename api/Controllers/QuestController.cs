@@ -42,7 +42,7 @@ namespace api.Controllers
         [HttpGet("map/{mapId}")]
         public async Task<IActionResult> GetByMapId([FromRoute] int mapId)
         {
-            var quests = await _questRepo.GetBymapIdAsync(mapId);
+            var quests = await _questRepo.GetByMapIdAsync(mapId);
 
             if (!quests.Any())
             {

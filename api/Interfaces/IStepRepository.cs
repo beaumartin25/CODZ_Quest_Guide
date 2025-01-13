@@ -10,5 +10,6 @@ namespace api.Interfaces
     {
         Task<List<Step>> GetAllAsync();
         Task<Step?> GetByIdAsync(int id);
+        Task<List<Step>> GetByQuestIdAsync(int questId); 
     }
 }
