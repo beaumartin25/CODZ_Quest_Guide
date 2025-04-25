@@ -18,5 +18,14 @@ namespace api.Mappers
                 ImageUrl = gameModel.ImageUrl
             };
         }
+
+        public static Game ToGameFromCreateDto(this CreateGameRequestDto gameDto)
+        {
+            return new Game
+            {
+                Name = gameDto.Name,
+                ImageUrl = gameDto.ImageUrl
+            };
+        }
     }
 }

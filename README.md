@@ -16,3 +16,7 @@
 ### api url
 
 http://localhost:5170/swagger/index.html
+
+### games landing page
+
+http://localhost:5173/games

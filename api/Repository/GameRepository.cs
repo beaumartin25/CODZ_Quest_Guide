@@ -25,5 +25,12 @@ namespace api.Repository
         {
             return await _context.Games.FindAsync(id);
         }
+
+        public async Task<Game> AddAsync(Game gameModel)
+        {
+            await _context.Games.AddAsync(gameModel);
+            await _context.SaveChangesAsync();
+            return gameModel;
+        }
     }
 }
