@@ -55,5 +55,35 @@ namespace api.Controllers
 
             return CreatedAtAction(nameof(GetById), new { id = gamemodel.Id }, gamemodel.ToGameDto());
         }
+
+        [HttpPut]
+        [Route("{id:int}")]
+        //[Authorize] will need to add authorization
+        public async Task<IActionResult> UpdateGame([FromRoute] int id, [FromBody] UpdateGameRequestDto updateDto)
+        {
+            var gameModel = await _gameRepo.UpdateAsync(id, updateDto);
+
+            if(gameModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(gameModel.ToGameDto());
+        }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        //[Authorize] will need to add authorization
+        public async Task<IActionResult> DeleteGame([FromRoute] int id)
+        {
+            var gameModel = await _gameRepo.DeleteAsync(id);
+
+            if (gameModel == null)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
     }
 }
