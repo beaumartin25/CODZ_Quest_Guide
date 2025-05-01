@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Dtos.Map;
 using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
@@ -52,6 +53,47 @@ namespace api.Controllers
 
             var mapDtos = maps.Select(m => m.ToMapDto());
             return Ok(mapDtos);
+        }
+
+        [HttpPost]
+        //[Authorize] will need to add authorization
+        public async Task<IActionResult> CreateMap([FromBody] CreateMapRequestDto mapDto)
+        {
+            var mapModel = mapDto.ToMapFromCreateDto();
+
+            await _mapRepo.AddAsync(mapModel);
+
+            return CreatedAtAction(nameof(GetById), new { id = mapModel.Id }, mapModel.ToMapDto());
+        }
+
+        [HttpPut]
+        [Route("{id:int}")] 
+        //[Authorize] will need to add authorization
+        public async Task<IActionResult> UpdateMap([FromRoute] int id, [FromBody] UpdateMapRequestDto UpdateDto)
+        {
+            var mapModel = await _mapRepo.UpdateAsync(id, UpdateDto);
+
+            if(mapModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(mapModel.ToMapDto());
+        }
+
+        [HttpDelete]
+        [Route("{id:int}")] 
+        //[Authorize] will need to add authorization
+        public async Task<IActionResult> DeleteMap([FromRoute] int id)
+        {
+            var mapModel = await _mapRepo.DeleteAsync(id);
+
+            if(mapModel == null)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Dtos.Quest;
 using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
@@ -51,6 +52,47 @@ namespace api.Controllers
 
             var questDtos = quests.Select(m => m.ToQuestDto());
             return Ok(questDtos);
+        }
+
+        [HttpPost]
+        //[Authorize] will need to add authorization
+        public async Task<IActionResult> AddQuest([FromBody] CreateQuestRequestDto questDto)
+        {
+            var questModel = questDto.ToQuestFromCreateDto();
+
+            await _questRepo.AddAsync(questModel);
+
+            return CreatedAtAction(nameof(GetById), new { id = questModel.Id }, questModel.ToQuestDto());
+        }
+
+        [HttpPut]
+        [Route("{id:int}")] 
+        //[Authorize] will need to add authorization
+        public async Task<IActionResult> UpdateQuest([FromRoute] int id, [FromBody] UpdateQuestRequestDto updateDto)
+        {
+            var questModel = await _questRepo.UpdateAsync(id, updateDto);
+
+            if(questModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(questModel.ToQuestDto());
+        }
+
+        [HttpDelete]
+        [Route("{id:int}")] 
+        //[Authorize] will need to add authorization
+        public async Task<IActionResult> DeleteQuest([FromRoute] int id)
+        {
+            var questModel = await _questRepo.DeleteAsync(id);
+
+            if(questModel == null)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
     }
 }

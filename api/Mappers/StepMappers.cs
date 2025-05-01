@@ -18,5 +18,14 @@ namespace api.Mappers
                 Description = stepModel.Description
             };
         }
+
+        public static Step ToStepFromCreateDto(this CreateStepRequestDto stepDto)
+        {
+            return new Step
+            {
+                Name = stepDto.Name,
+                Description = stepDto.Description
+            };
+        }
     }
 }

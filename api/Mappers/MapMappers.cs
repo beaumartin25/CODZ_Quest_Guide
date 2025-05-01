@@ -18,5 +18,14 @@ namespace api.Mappers
                 ImageUrl = mapModel.ImageUrl
             };
         }
+
+        public static Map ToMapFromCreateDto(this CreateMapRequestDto mapDto)
+        {
+            return new Map
+            {
+                Name = mapDto.Name,
+                ImageUrl = mapDto.ImageUrl
+            };
+        }
     }
 }

@@ -49,11 +49,11 @@ namespace api.Controllers
         //[Authorize] will need to add authorization
         public async Task<IActionResult> AddGame([FromBody] CreateGameRequestDto gameDto)
         {
-            var gamemodel = gameDto.ToGameFromCreateDto();
+            var gameModel = gameDto.ToGameFromCreateDto();
             
-            await _gameRepo.AddAsync(gamemodel);
+            await _gameRepo.AddAsync(gameModel);
 
-            return CreatedAtAction(nameof(GetById), new { id = gamemodel.Id }, gamemodel.ToGameDto());
+            return CreatedAtAction(nameof(GetById), new { id = gameModel.Id }, gameModel.ToGameDto());
         }
 
         [HttpPut]

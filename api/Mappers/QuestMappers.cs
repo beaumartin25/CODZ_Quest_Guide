@@ -18,5 +18,14 @@ namespace api.Mappers
                 MainQuest = questModel.MainQuest
             };
         }
+
+        public static Quest ToQuestFromCreateDto(this CreateQuestRequestDto questDto)
+        {
+            return new Quest
+            {
+                Name = questDto.Name,
+                MainQuest = questDto.MainQuest
+            };
+        }
     }
 }
