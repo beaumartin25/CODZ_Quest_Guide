@@ -6,6 +6,7 @@ using api.Data;
 using api.Dtos.Map;
 using api.Interfaces;
 using api.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -56,7 +57,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        //[Authorize] will need to add authorization
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateMap([FromBody] CreateMapRequestDto mapDto)
         {
             var mapModel = mapDto.ToMapFromCreateDto();
@@ -68,7 +69,7 @@ namespace api.Controllers
 
         [HttpPut]
         [Route("{id:int}")] 
-        //[Authorize] will need to add authorization
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateMap([FromRoute] int id, [FromBody] UpdateMapRequestDto UpdateDto)
         {
             var mapModel = await _mapRepo.UpdateAsync(id, UpdateDto);
@@ -83,7 +84,7 @@ namespace api.Controllers
 
         [HttpDelete]
         [Route("{id:int}")] 
-        //[Authorize] will need to add authorization
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteMap([FromRoute] int id)
         {
             var mapModel = await _mapRepo.DeleteAsync(id);

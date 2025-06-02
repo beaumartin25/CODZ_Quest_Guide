@@ -7,6 +7,7 @@ using api.Dtos.Game;
 using api.Interfaces;
 using api.Mappers;
 using api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -46,7 +47,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        //[Authorize] will need to add authorization
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddGame([FromBody] CreateGameRequestDto gameDto)
         {
             var gameModel = gameDto.ToGameFromCreateDto();
@@ -58,7 +59,7 @@ namespace api.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-        //[Authorize] will need to add authorization
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateGame([FromRoute] int id, [FromBody] UpdateGameRequestDto updateDto)
         {
             var gameModel = await _gameRepo.UpdateAsync(id, updateDto);
@@ -73,7 +74,7 @@ namespace api.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
-        //[Authorize] will need to add authorization
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteGame([FromRoute] int id)
         {
             var gameModel = await _gameRepo.DeleteAsync(id);

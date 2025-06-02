@@ -6,6 +6,7 @@ using api.Data;
 using api.Dtos.Step;
 using api.Interfaces;
 using api.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -57,7 +58,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        //[Authorize] will need to add authorization
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddStep([FromBody] CreateStepRequestDto stepDto)
         {
             var stepModel = stepDto.ToStepFromCreateDto();
@@ -69,7 +70,7 @@ namespace api.Controllers
 
         [HttpPut]
         [Route("{id:int}")] 
-        //[Authorize] will need to add authorization
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateStep([FromRoute] int id, [FromBody] UpdateStepRequestDto updateDto)
         {
             var stepModel = await _stepRepo.UpdateAsync(id, updateDto);
@@ -84,7 +85,7 @@ namespace api.Controllers
 
         [HttpDelete]
         [Route("{id:int}")] 
-        //[Authorize] will need to add authorization
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteStep([FromRoute] int id)
         {
             var stepModel = await _stepRepo.DeleteAsync(id);

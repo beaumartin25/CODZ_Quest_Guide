@@ -6,6 +6,7 @@ using api.Data;
 using api.Dtos.Quest;
 using api.Interfaces;
 using api.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -55,7 +56,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        //[Authorize] will need to add authorization
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddQuest([FromBody] CreateQuestRequestDto questDto)
         {
             var questModel = questDto.ToQuestFromCreateDto();
@@ -67,7 +68,7 @@ namespace api.Controllers
 
         [HttpPut]
         [Route("{id:int}")] 
-        //[Authorize] will need to add authorization
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateQuest([FromRoute] int id, [FromBody] UpdateQuestRequestDto updateDto)
         {
             var questModel = await _questRepo.UpdateAsync(id, updateDto);
@@ -82,7 +83,7 @@ namespace api.Controllers
 
         [HttpDelete]
         [Route("{id:int}")] 
-        //[Authorize] will need to add authorization
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteQuest([FromRoute] int id)
         {
             var questModel = await _questRepo.DeleteAsync(id);
