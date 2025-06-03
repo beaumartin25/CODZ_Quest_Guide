@@ -47,7 +47,7 @@ namespace api.Controllers
                 return Unauthorized("Username not found and/or password is incorrect");
             }
             
-            return Ok(_tokenService.CreateToken(user));
+            return Ok(await _tokenService.CreateToken(user));
         }
 
         [HttpPost("register")]
@@ -73,7 +73,7 @@ namespace api.Controllers
                     var roleResult = await _userManager.AddToRoleAsync(appUser, "User");
                     if (roleResult.Succeeded)
                     {
-                        return Ok(_tokenService.CreateToken(appUser));
+                        return Ok(await _tokenService.CreateToken(appUser));
                     }
                     else
                     {
