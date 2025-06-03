@@ -3,11 +3,13 @@ import App from "../App";
 import GamesPage from "../Pages/GamesPage/GamesPage";
 import MapsPage from "../Pages/MapsPage/MapsPage";
 import QuestsPage from "../Pages/QuestsPage/QuestsPage";
+import LandingPage from "../Pages/LandingPage/LandingPage";
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      { path: "", element: <LandingPage /> },
       { path: "games", element: <GamesPage /> },
       { path: "maps/:gameId", element: <MapsPage /> },
       { path: "quests/:questId", element: <QuestsPage /> },
