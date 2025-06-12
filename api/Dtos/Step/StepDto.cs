@@ -11,6 +11,7 @@ namespace api.Dtos.Step
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public float Order { get; set; }
         public int? QuestId { get; set; }
     }
 }

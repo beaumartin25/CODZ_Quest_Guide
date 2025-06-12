@@ -9,6 +9,7 @@ namespace api.Dtos.Step
     {
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public float Order { get; set; }
         public int? QuestId { get; set; }
     }
 }

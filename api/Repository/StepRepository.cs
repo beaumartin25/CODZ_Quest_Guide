@@ -19,7 +19,7 @@ namespace api.Repository
         }        
         public async Task<List<Step>> GetAllAsync()
         {
-            return await _context.Steps.ToListAsync();
+            return await _context.Steps.OrderBy(s => s.Order).ToListAsync();
         }
 
         public async Task<Step?> GetByIdAsync(int id)
